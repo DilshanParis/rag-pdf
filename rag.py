@@ -3,10 +3,10 @@ import PyPDF2
 import faiss
 import openai
 from dotenv import load_dotenv
-from langchain.embeddings import OpenAIEmbeddings
-from langchain.vectorstores import FAISS
+from langchain_openai import OpenAIEmbeddings
+from langchain_community.vectorstores import FAISS
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.llms import OpenAI
+from langchain_openai import OpenAI
 from langchain.chains import RetrievalQA
 from langchain.docstore.document import Document
 
@@ -49,7 +49,7 @@ def run_rag():
         question = input("You: ")
         if question.lower() in ["exit", "quit"]:
             break
-        answer = qa.run(question)
+        answer = qa.invoke(question)
         print("AI:", answer)
 
 if __name__ == "__main__":
